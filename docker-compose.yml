@@ -1,0 +1,10 @@
+version: '3'
+
+services:
+  dev:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    volumes:
+      - .:/app
+    command: sh -c 'while true; do sleep 1000; done'
