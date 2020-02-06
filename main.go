@@ -60,7 +60,8 @@ func (r *resolver) ServeDNS(w dns.ResponseWriter, query *dns.Msg) {
     name := strings.Trim(origname, ".")
 	switch query.Question[0].Qtype {
 	case dns.TypeA:
-        var target string
+        // If no pattern matches, serve the incoming name
+        target := name
 
         for _, m := range r.mappings {
             if glob.Glob(m.pattern, name) {
